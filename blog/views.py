@@ -41,7 +41,7 @@ class PostUpdateView(LoginRequiredMixin,UpdateView):
     
 class PostDeleteView(LoginRequiredMixin,DeleteView):
     model = Post
-    succes_url = reverse_lazy('post_list')
+    success_url = reverse_lazy('post_list')
     
 class DraftListView(LoginRequiredMixin,ListView):
     login_url = '/login/'
@@ -87,11 +87,6 @@ def comment_remove(request,pk):
     comment.delete()
     return redirect('post_detail',pk=post_pk)
 
-@login_required
-def user_logout(request):
-    logout(request)
-    return HttpResponseRedirect(reverse('post_list'))
-
 def register(request):
 
     registered = False
@@ -129,26 +124,26 @@ def register(request):
                    'profile_form': profile_form,
                    'registered': registered})
 
-def user_login(request):
+# def user_login(request):
     
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+#     if request.method == 'POST':
+#         username = request.POST.get('username')
+#         password = request.POST.get('password')
         
-        user = authenticate(username=username, password=password)
+#         user = authenticate(username=username, password=password)
         
-        if user:
-            if user.is_active:
-                login(request, user)
-                return HttpResponseRedirect(reverse('post_list'))
+#         if user:
+#             if user.is_active:
+#                 login(request, user)
+#                 return HttpResponseRedirect(reverse('post_list'))
             
-            else:
-                return HttpResponse('ACCOUNT NOT ACTIVE')
+#             else:
+#                 return HttpResponse('ACCOUNT NOT ACTIVE')
             
-        else:
-            print('Someone tried to login and failed!')
-            print('username: {} and password: {}'.format(username,password))
-            return HttpResponse('Invalid login details supplied')
+#         else:
+#             print('Someone tried to login and failed!')
+#             print('username: {} and password: {}'.format(username,password))
+#             return HttpResponse('Invalid login details supplied')
         
-    else:
-        return render(request, 'registration/login.html')
+#     else:
+#         return render(request, 'registration/login.html')
