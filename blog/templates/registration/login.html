@@ -1,0 +1,37 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href={% static 'css/style.css' %}>
+	<title>Login</title>
+</head>
+<body>
+  <div class="login-box">
+		<h2>Please Login</h2>
+      <form method="post" action="{% url 'login' %}"> 
+        {% csrf_token %}
+          <div class="user-box">
+            <input type="text" name="username" required="">
+            <label>Username</label>
+          </div>
+          <div class="user-box">
+            <input type="password" name="password" required="">
+            <label>Password</label>
+          </div>
+            <a type="submit">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <input type="submit" value="Login" style="background-color: #10192a; border: 0px; border-color:#10192a; color: white;">
+          </a>
+    
+      </form>
+	</div>
+</body>
+</html>
+{% endblock %}

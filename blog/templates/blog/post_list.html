@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <div class="container" style="background-color:rgb(207, 207, 207); text-align:center;">
+        {% for post in post_list %}
+        <div class="post">
+            <h3> <br><a href="{% url 'post_detail' pk=post.pk %}">{{post.title}} <br> {% if post.post_image %}    
+                <img src=" {{ post.post_image.url}} " alt="error" style="width:200px; height:200px">
+            {% endif %} </a></h3>
+            
+            <div class="date">
+                <p>Published on: {{post.published|date:"D M Y"}}</p>
+            </div>
+            <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{post.approach}}</a>
+        </div>
+        <br><br><br><br>
+        {% endfor %}
+    </div>
+{% endblock  %}
+
+

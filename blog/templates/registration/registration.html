@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="container" style="background-color:rgb(207, 207, 207);">
+  {% if registered %}
+          <h1 style="text-align:center;">Thanks for Registration</h1>
+        {% else %}
+          <h1 style="text-align: center; color:#002C5B;">
+            Please enter your information
+          </h1>
+          <h3>Please fill the form</h3>
+
+        <form class="row g-3" enctype="multipart/form-data" method="POST">
+          {% csrf_token %}
+          {{ user_form.as_p }}
+          {{ profile_form.as_p }}
+          <input type="submit" name="" value="Register" style="background-color: #c800ff; color: white;">
+        </form>
+        {% endif %}
+  {% endblock %}
+</div>  
